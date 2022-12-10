@@ -7,7 +7,6 @@ import (
 
 // String returns the Link in a format usable for HTTP Headers as defined by RFC8288
 func (l Link) String() string {
-
 	var result []string
 
 	result = append(result, fmt.Sprintf(`<%s>`, l.HREF.String()))
@@ -36,10 +35,18 @@ func (l Link) String() string {
 		result = append(result, fmt.Sprintf(`type="%s"`, l.Type))
 	}
 
-	for key, value := range l.extensions {
+	for _, key := range l.extensionKeys {
+		value := l.extensions[key]
 		result = append(result, fmt.Sprintf(`%s="%s"`, key, value))
 	}
 
 	return strings.Join(result, "; ")
+}
 
+func LinkHeader(links ...Link) string {
+	values := []string{}
+	for _, link := range links {
+		values = append(values, link.String())
+	}
+	return fmt.Sprintf("Link: %s", strings.Join(values, ", "))
 }

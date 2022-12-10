@@ -68,8 +68,13 @@ func TestStringify(t *testing.T) {
 		),
 	}
 
+	links := []Link{}
+
 	for _, entry := range entries {
+		links = append(links, entry.result)
 		s := entry.result.String()
 		assert.Equal(entry.input, s, fmt.Sprintf("test String() output for case '%s'", entry.name))
 	}
+
+	assert.Equal(`Link: <https://www.google.com>, <https://www.google.com>; hreflang="en", <https://www.google.com>; rel="next", <https://www.google.com>; media="media", <https://www.google.com>; title="title", <https://www.google.com>; title*="title*", <https://www.google.com>; type="type"`, LinkHeader(links...))
 }
