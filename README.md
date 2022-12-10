@@ -32,14 +32,14 @@ Link{
         Host: "www.google.com",
     },
     Rel:           "next",
-	HREFLang:      "en",
-	Title:         "title",
-	TitleStar:     "title*",
-	Type:          "type",
-	extensionKeys: []string{"extension"},
-	extensions: map[string]interface{}{
+    HREFLang:      "en",
+    Title:         "title",
+    TitleStar:     "title*",
+    Type:          "type",
+    extensionKeys: []string{"extension"},
+    extensions: map[string]interface{}{
         "extension": "value",
-	},
+    },
 },
 ```
 
@@ -50,16 +50,16 @@ According to RFC8288, certain keys are reserved. These are all part of the
 
 ```go
 Link{
-	HREF:   url.URL{
+    HREF:   url.URL{
         Scheme: "https",
         Host: "www.google.com",
     },
     Rel:       "rel",
-	HREFLang:  "hreflang",
-	Media:     "media",
-	Title:     "title",
-	TitleStar: "title*",
-	Type:      "type",
+    HREFLang:  "hreflang",
+    Media:     "media",
+    Title:     "title",
+    TitleStar: "title*",
+    Type:      "type",
 }
 ```
 
