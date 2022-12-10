@@ -8,11 +8,15 @@ import (
 )
 
 func LinkHeader(links ...Link) string {
+	return fmt.Sprintf("Link: %s", LinkHeaderValue(links...))
+}
+
+func LinkHeaderValue(links ...Link) string {
 	values := []string{}
 	for _, link := range links {
 		values = append(values, link.String())
 	}
-	return fmt.Sprintf("Link: %s", strings.Join(values, ", "))
+	return strings.Join(values, ", ")
 }
 
 func ParseLinkHeaders(v string) ([]Link, error) {

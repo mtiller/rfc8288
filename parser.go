@@ -87,6 +87,8 @@ loop:
 
 }
 
+// TODO: We should check to ensure that the anchor is also a URI Reference but
+// we only check the actual HREF of the link.
 func (p *parser) href() (url.URL, error) {
 
 	var uri *url.URL
