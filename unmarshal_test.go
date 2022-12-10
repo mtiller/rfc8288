@@ -32,6 +32,8 @@ func TestUnmarshal(t *testing.T) {
 			map[string]interface{}{
 				"href":      "https://www.google.com",
 				"rel":       "rel",
+				"rev":       "rev",
+				"anchor":    "anchor",
 				"hreflang":  "hreflang",
 				"media":     "media",
 				"title":     "title",
@@ -44,6 +46,8 @@ func TestUnmarshal(t *testing.T) {
 				l := Link{
 					HREF:      parseURL("https://www.google.com", t),
 					Rel:       "rel",
+					Rev:       "rev",
+					Anchor:    "anchor",
 					HREFLang:  "hreflang",
 					Media:     "media",
 					Title:     "title",
@@ -77,6 +81,14 @@ func TestUnmarshal(t *testing.T) {
 
 		if _, ok := in["rel"]; ok {
 			assert.Equal(out.Rel, result.Rel)
+		}
+
+		if _, ok := in["rev"]; ok {
+			assert.Equal(out.Rev, result.Rev)
+		}
+
+		if _, ok := in["anchor"]; ok {
+			assert.Equal(out.Anchor, result.Anchor)
 		}
 
 		if _, ok := in["hreflang"]; ok {

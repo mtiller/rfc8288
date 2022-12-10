@@ -56,12 +56,15 @@ loop:
 		switch token {
 		case REL:
 			result.Rel = value
+		case REV:
+			result.Rev = value
+		case ANCHOR:
+			result.Anchor = value
 		case HREFLANG:
 			result.HREFLang = value
 		case MEDIA:
 			result.Media = value
 		case TITLE:
-
 			if hasStar {
 				result.TitleStar = value
 			} else {
@@ -163,7 +166,7 @@ func (p *parser) attribute() (token, string, string, bool, error) {
 func (p parser) isValidAttributeKey(t token) bool {
 
 	switch t {
-	case REL, HREFLANG, MEDIA, TITLE, TYPE, WORD:
+	case REL, REV, ANCHOR, HREFLANG, MEDIA, TITLE, TYPE, WORD:
 		return true
 	default:
 		return false

@@ -30,6 +30,8 @@ const (
 
 	// reserved attribute names
 	REL
+	REV
+	ANCHOR
 	HREFLANG
 	MEDIA
 	TITLE
@@ -228,6 +230,10 @@ func (s *scanner) scanWord() (token, string, error) {
 		switch buf.String() {
 		case "rel":
 			return s.scanned(REL, buf.String(), nil)
+		case "rev":
+			return s.scanned(REV, buf.String(), nil)
+		case "anchor":
+			return s.scanned(ANCHOR, buf.String(), nil)
 		case "hreflang":
 			return s.scanned(HREFLANG, buf.String(), nil)
 		case "media":

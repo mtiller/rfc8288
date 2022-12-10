@@ -45,6 +45,8 @@ func TestLinkMarshal(t *testing.T) {
 				l := Link{
 					HREF:      parseURL("https://www.google.com", t),
 					Rel:       "rel",
+					Rev:       "rev",
+					Anchor:    "anchor",
 					HREFLang:  "hreflang",
 					Media:     "media",
 					Title:     "title",
@@ -60,6 +62,8 @@ func TestLinkMarshal(t *testing.T) {
 			map[string]interface{}{
 				"href":      "https://www.google.com",
 				"rel":       "rel",
+				"rev":       "rev",
+				"anchor":    "anchor",
 				"hreflang":  "hreflang",
 				"media":     "media",
 				"title":     "title",
@@ -93,6 +97,14 @@ func TestLinkMarshal(t *testing.T) {
 
 		if in.Rel != "" {
 			check("rel", entry)
+		}
+
+		if in.Rev != "" {
+			check("rev", entry)
+		}
+
+		if in.Anchor != "" {
+			check("anchor", entry)
 		}
 
 		if in.HREFLang != "" {

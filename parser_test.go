@@ -1,18 +1,5 @@
 package rfc8288
 
-// ParseLink attempts to parse a link string
-func ParseLink(link string) (Link, error) {
-
-	var (
-		rs io.RuneScanner = strings.NewReader(link)
-		s                 = scanner{runeScanner: rs}
-		p                 = parser{scanner: s}
-	)
-
-	return p.parse()
-
-}
-
 import (
 	"fmt"
 	"testing"
@@ -93,6 +80,16 @@ func TestParser(t *testing.T) {
 				HREFLang:  "en",
 				Title:     "title",
 				TitleStar: "title*",
+			},
+		),
+		parseEntry(
+			"href, rel, rev, anchor",
+			`<https://www.google.com>; rel="next"; rev="rev"; anchor="/foo"`,
+			Link{
+				HREF:   parseURL("https://www.google.com", t),
+				Rel:    "next",
+				Rev:    "rev",
+				Anchor: "/foo",
 			},
 		),
 		parseEntry(

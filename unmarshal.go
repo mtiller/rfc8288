@@ -57,6 +57,32 @@ func (l *Link) UnmarshalJSON(data []byte) error {
 				}
 			}
 
+		case "rev":
+
+			if str, ok := v.(string); ok {
+				l.Rev = str
+			} else {
+				return &json.UnmarshalTypeError{
+					Value:  "string",
+					Type:   reflect.TypeOf(""),
+					Field:  "rev",
+					Struct: "Link",
+				}
+			}
+
+		case "anchor":
+
+			if str, ok := v.(string); ok {
+				l.Anchor = str
+			} else {
+				return &json.UnmarshalTypeError{
+					Value:  "string",
+					Type:   reflect.TypeOf(""),
+					Field:  "anchor",
+					Struct: "Link",
+				}
+			}
+
 		case "hreflang":
 
 			if str, ok := v.(string); ok {

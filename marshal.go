@@ -19,6 +19,14 @@ func (l Link) MarshalJSON() ([]byte, error) {
 		out["rel"] = l.Rel
 	}
 
+	if l.Rev != "" {
+		out["rev"] = l.Rev
+	}
+
+	if l.Anchor != "" {
+		out["anchor"] = l.Anchor
+	}
+
 	if l.HREFLang != "" {
 		out["hreflang"] = l.HREFLang
 	}

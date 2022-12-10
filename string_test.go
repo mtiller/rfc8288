@@ -28,10 +28,12 @@ func TestStringify(t *testing.T) {
 		),
 		parseEntry(
 			"with href, rel",
-			`<https://www.google.com>; rel="next"`,
+			`<https://www.google.com>; rel="next"; rev="prev"; anchor="#"`,
 			Link{
-				HREF: parseURL("https://www.google.com", t),
-				Rel:  "next",
+				HREF:   parseURL("https://www.google.com", t),
+				Rel:    "next",
+				Rev:    "prev",
+				Anchor: "#",
 			},
 		),
 		parseEntry(
@@ -76,5 +78,5 @@ func TestStringify(t *testing.T) {
 		assert.Equal(entry.input, s, fmt.Sprintf("test String() output for case '%s'", entry.name))
 	}
 
-	assert.Equal(`Link: <https://www.google.com>, <https://www.google.com>; hreflang="en", <https://www.google.com>; rel="next", <https://www.google.com>; media="media", <https://www.google.com>; title="title", <https://www.google.com>; title*="title*", <https://www.google.com>; type="type"`, LinkHeader(links...))
+	assert.Equal(`Link: <https://www.google.com>, <https://www.google.com>; hreflang="en", <https://www.google.com>; rel="next"; rev="prev"; anchor="#", <https://www.google.com>; media="media", <https://www.google.com>; title="title", <https://www.google.com>; title*="title*", <https://www.google.com>; type="type"`, LinkHeader(links...))
 }

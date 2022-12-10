@@ -14,6 +14,8 @@ var (
 	ReservedKeys = map[string]struct{}{
 		"href":     {},
 		"rel":      {},
+		"rev":      {},
+		"anchor":   {},
 		"hreflang": {},
 		"media":    {},
 		"title":    {},
@@ -26,6 +28,8 @@ var (
 type Link struct {
 	HREF      url.URL
 	Rel       string
+	Rev       string
+	Anchor    string
 	HREFLang  string
 	Media     string
 	Title     string
@@ -61,6 +65,15 @@ func (l *Link) Extension(key string) (interface{}, bool) {
 	val, ok := l.extensions[key]
 	return val, ok
 
+}
+
+func (l *Link) StringExtension(key string) (string, bool) {
+	v, exists := l.Extension(key)
+	if !exists {
+		return "", false
+	}
+	s, ok := v.(string)
+	return s, ok
 }
 
 // Extend adds an extension to the Link. Only non-reserved extension keys are allowed.

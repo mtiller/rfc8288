@@ -15,6 +15,14 @@ func (l Link) String() string {
 		result = append(result, fmt.Sprintf(`rel="%s"`, l.Rel))
 	}
 
+	if l.Rev != "" {
+		result = append(result, fmt.Sprintf(`rev="%s"`, l.Rev))
+	}
+
+	if l.Anchor != "" {
+		result = append(result, fmt.Sprintf(`anchor="%s"`, l.Anchor))
+	}
+
 	if l.HREFLang != "" {
 		result = append(result, fmt.Sprintf(`hreflang="%s"`, l.HREFLang))
 	}
