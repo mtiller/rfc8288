@@ -2,7 +2,6 @@ package rfc8288
 
 import (
 	"errors"
-	"io"
 	"net/url"
 	"strings"
 )
@@ -23,19 +22,6 @@ var (
 	}
 )
 
-// ParseLink attempts to parse a link string
-func ParseLink(link string) (Link, error) {
-
-	var (
-		rs io.RuneScanner = strings.NewReader(link)
-		s                 = scanner{runeScanner: rs}
-		p                 = parser{scanner: s}
-	)
-
-	return p.parse()
-
-}
-
 // Link is an implementation of the structure defined by RFC8288 Web Linking
 type Link struct {
 	HREF      url.URL
@@ -48,6 +34,14 @@ type Link struct {
 
 	extensionKeys []string
 	extensions    map[string]interface{}
+}
+
+func NewLink(href string) (*Link, error) {
+	u, err := url.Parse(href)
+	if err != nil {
+		return nil, err
+	}
+	return &Link{HREF: *u}, nil
 }
 
 // ExtensionKeys returns a slice of strings representing the names of extension keys for this Link struct in the order
