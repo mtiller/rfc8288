@@ -42,11 +42,3 @@ func (l Link) String() string {
 
 	return strings.Join(result, "; ")
 }
-
-func LinkHeader(links ...Link) string {
-	values := []string{}
-	for _, link := range links {
-		values = append(values, link.String())
-	}
-	return fmt.Sprintf("Link: %s", strings.Join(values, ", "))
-}
