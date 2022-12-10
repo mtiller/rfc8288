@@ -1,4 +1,4 @@
-## Disclaimer
+### Disclaimer
 
 This repository is effectively a fork of
 https://github.com/tniswong/go.rfcx/tree/master/rfc8288 by
@@ -27,18 +27,18 @@ In this case, you'll get a `Link` structure back that will look like this:
 
 ```go
 Link{
-	HREF:          url.URL{
+    HREF:          url.URL{
         Scheme: "https",
         Host: "www.google.com",
     },
-	Rel:           "next",
+    Rel:           "next",
 	HREFLang:      "en",
 	Title:         "title",
 	TitleStar:     "title*",
 	Type:          "type",
 	extensionKeys: []string{"extension"},
 	extensions: map[string]interface{}{
-	    "extension": "value",
+        "extension": "value",
 	},
 },
 ```
@@ -50,11 +50,11 @@ According to RFC8288, certain keys are reserved. These are all part of the
 
 ```go
 Link{
-	HREF:      url.URL{
+	HREF:   url.URL{
         Scheme: "https",
         Host: "www.google.com",
     },
-	Rel:       "rel",
+    Rel:       "rel",
 	HREFLang:  "hreflang",
 	Media:     "media",
 	Title:     "title",
