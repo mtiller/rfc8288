@@ -93,6 +93,18 @@ This will output:
 
 Note, this it the link header **value**, not the link header itself.
 
+### Headers
+
+If you want to parse (one or more) HTTP headers, you can do that as well using `ParseLinkHeaders`, _e.g.,_
+
+```go
+links, err = ParseLinkHeaders("Context-Type: application/json\r\nLink: </foo>; rel=\"hello\"\r\nAccept: *\r\nLink: </bar1>; rel=\"item\", </bar2>; rel=\"collection\"")
+```
+
+This will parse the headers, ignore any non `Link` headers and collect all
+`Link` headers (whether they be individual headers with only a single URI or
+headers that concatenate multiple links together with `,`) and return them.
+
 ### JSON
 
 The `Link` structure defines special `MarshalJSON` and `Links can be marshaled
